@@ -25,11 +25,12 @@ Configure
 Usage
 -----
 
-**kanban** is the keyword, whatever text you supply next will the title of the card.
+**kanban** is the keyword, the card will be populated with the text
+that is entered following the below pattern.
 
-By default cards are added to the first column of your board.
+
+**card name; description**
+
+Example: kanban **Update Readme; remember to add license information**
 
 
-ToDo
-----
-* Add optional card description.

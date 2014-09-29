@@ -14,10 +14,13 @@ parser = argparse.ArgumentParser(description='Script To Add Cards To Kanbanery')
 parser.add_argument('--workspace', default=None, help='Kanbanery Workspace')
 parser.add_argument('--apikey', default=None, help='Kanbanery API Key')
 parser.add_argument('--projectid', default=None, help='Kanbanery Project ID')
-parser.add_argument('--title', default=None, help='Text From Alfred')
+parser.add_argument('--text', default=None, help='Text From Alfred')
 args = parser.parse_args()
 
 api_endpoint = 'https://%s.kanbanery.com/api/v1/projects/%s/tasks.json' % (args.workspace, args.projectid)
+
+# Seperate 'text' into tuple using ';'. [0] = Card Title, [2] = Card Description
+card_data = args.text.partition(";")
 
 def addCard():
     req = urllib2.Request(api_endpoint)
@@ -25,7 +28,7 @@ def addCard():
     req.add_header('Accept', 'application/json')
     req.add_header("Content-type", "application/x-www-form-urlencoded")
 
-    query_args = { '[task]title': args.title }
+    query_args = { '[task]title': card_data[0], '[task]description': card_data[2] }
     encoded_args = urllib.urlencode(query_args)
 
     try:
