@@ -33,4 +33,5 @@ that is entered following the below pattern.
 
 Example: kanban **Update Readme; remember to add license information**
 
+Description is optional.
 
